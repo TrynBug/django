@@ -66,11 +66,15 @@ def py_test(request):
         form = PyForm()
 
     input_text = request.POST.get('input_text')
+    if input_text is None:
+        input_text = ""
+
     split_text = input_text.split()
+
     print(request.POST.getlist('words'))
     if 'submit_split' in request.POST:
         print('submit_split')
     elif 'submit_save' in request.POST:
         print('submit_save')
 
-    return render(request, 'blog/py_test.html', {'pytest':pytest, 'form':form, 'input_text':input_text, 'split_text':split_text})
+    return render(request, 'blog/important_words.html', {'pytest':pytest, 'form':form, 'input_text':input_text, 'split_text':split_text})

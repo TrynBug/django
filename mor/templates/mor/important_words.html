@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'mor/base.html' %}
+
+{% block content %}
+    <h1>Python Test</h1>
+
+    <form method="POST">{% csrf_token %}
+        <div class="inline-content post-form">
+            <!-- {{ form.as_p }} -->
+            <textarea name="input_text" cols="85">{{ input_text }}</textarea>
+            <button type="submit" class="save btn btn-default" name="submit_split">Go</button>
+        </div>
+        {% for word in words %}
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="{{ word }}" name="checkbox_words" value="{{ word }}">
+                <label class="custom-control-label" for="{{ word }}">{{ word }}</label>
+            </div>
+        {% endfor %}
+        <div class="text-left">
+            {% if words %}
+                <button type="submit" name="submit_save">Save</button>
+            {% endif %}
+        </div>
+        <h4>
+            {% if is_saved %}
+                Saved.
+            {% endif %}
+        </h4>
+
+
+    </form>
+
+
+
+{% endblock %}
