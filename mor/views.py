@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 def important_words(request):
 
-    mor = get_object_or_404(Morpheme, pk=1)
+    mor = Morpheme()
 
     if request.method == "POST":
         #form = MorForm(request.POST, instance=pytest)
