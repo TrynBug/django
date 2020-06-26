@@ -57,3 +57,9 @@ h1, h2, h3, h4 {
 .inline-content {
   display: inline-flex;
 }
+
+
+
+.table-fit {
+    width: 1px;
+}

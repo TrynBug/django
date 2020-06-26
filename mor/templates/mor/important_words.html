@@ -10,12 +10,32 @@
             <textarea name="input_text" cols="85">{{ input_text }}</textarea>
             <button type="submit" class="save btn btn-default" name="submit_split">Go</button>
         </div>
-        {% for word in words %}
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="{{ word }}" name="checkbox_words" value="{{ word }}">
-                <label class="custom-control-label" for="{{ word }}">{{ word }}</label>
-            </div>
-        {% endfor %}
+        <table class="table table-striped">
+            {% if words %}
+                <th width="100">Words</th>
+                <th width="100">Positive</th>
+                <th width="100">Negative</th>
+            {% endif %}
+            {% for word in words %}
+                <tr>
+                    <td>{{ word }}</td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="{{ word }}" name="positive_checkbox_words" value="{{ word }}">
+                            <label class="custom-control-label" for="{{ word }}"></label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="{{ word }}" name="negative_checkbox_words" value="{{ word }}">
+                            <label class="custom-control-label" for="{{ word }}"></label>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
         <div class="text-left">
             {% if words %}
                 <button type="submit" name="submit_save">Save</button>

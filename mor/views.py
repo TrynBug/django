@@ -19,9 +19,12 @@ def important_words(request):
         input_text = ""
 
     words = input_text.split()
+    word_index = {k:v for v, k in enumerate(words)}
 
-    checked_words = request.POST.getlist('checkbox_words')
-    print(checked_words)
+    positive_checkbox_words = request.POST.getlist('positive_checkbox_words')
+    negative_checkbox_words = request.POST.getlist('negative_checkbox_words')
+    checkbox_words = list(dict.fromkeys(positive_checkbox_words + negative_checkbox_words))
+    checkbox_words.sort(key=lambda x: word_index[x])
 
     if 'submit_split' in request.POST:
         None
@@ -30,7 +33,9 @@ def important_words(request):
     if 'submit_save' in request.POST:
         mor = Morpheme()
         mor.text = input_text
-        mor.words = ','.join(checked_words)
+        mor.words = ','.join(checkbox_words)
+        mor.positive_words = ','.join(positive_checkbox_words)
+        mor.negative_words = ','.join(negative_checkbox_words)
         mor.save()
         input_text = ''
         words = ''
